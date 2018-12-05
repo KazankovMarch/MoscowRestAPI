@@ -32,7 +32,6 @@ public class HouseController {
     }
 
     @PutMapping
-    @PostMapping
     public Optional<House> saveHouse(@RequestBody HouseForm houseForm){
         houseForm.setAreaRepository(areaRepository);
         Optional<House> house = Optional.of(houseForm.toHouse());
@@ -40,6 +39,10 @@ public class HouseController {
         return house;
     }
 
+    @PostMapping
+    public Optional<House> updateHouse(@RequestBody HouseForm houseForm){
+        return saveHouse(houseForm);
+    }
 
     @DeleteMapping
     public String deleteHouse(@RequestBody House house){

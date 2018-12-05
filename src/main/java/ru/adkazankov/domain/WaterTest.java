@@ -1,9 +1,17 @@
 package ru.adkazankov.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
+
+@Data
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "water")
 public class WaterTest {
@@ -31,46 +39,5 @@ public class WaterTest {
     }
 
     public WaterTest() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getResVal() {
-        return resVal;
-    }
-
-    public void setResVal(String resVal) {
-        this.resVal = resVal;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Area getArea() {
-        return area;
-    }
-
-    public void setArea(Area area) {
-        this.area = area;
-    }
-
-    @Override
-    public String toString() {
-        return "WaterTest{" +
-                "name='" + name + '\'' +
-                ", resVal='" + resVal + '\'' +
-                ", id=" + id +
-                '}';
     }
 }

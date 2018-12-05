@@ -65,3 +65,31 @@ TABLESPACE pg_default;
 
 ALTER TABLE public.water
     OWNER to postgres;
+
+-- Table: public.noise
+
+-- DROP TABLE public.noise;
+
+CREATE TABLE public.noise
+(
+    source text COLLATE pg_catalog."default",
+    results text COLLATE pg_catalog."default",
+    address text COLLATE pg_catalog."default",
+    checkdate text COLLATE pg_catalog."default",
+    numrequests integer,
+    changes text COLLATE pg_catalog."default",
+    id integer NOT NULL DEFAULT nextval('noise_id_seq'::regclass),
+    area_id bigint,
+    CONSTRAINT noise_pkey PRIMARY KEY (id),
+    CONSTRAINT noise_area_id_fkey FOREIGN KEY (area_id)
+        REFERENCES public.area (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.noise
+    OWNER to postgres;

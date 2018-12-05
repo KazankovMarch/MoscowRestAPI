@@ -1,5 +1,7 @@
 package ru.adkazankov.form;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -9,6 +11,8 @@ import ru.adkazankov.dao.HouseRepository;
 import ru.adkazankov.domain.Area;
 import ru.adkazankov.domain.House;
 
+
+@Data
 public class HouseForm {
 
     private AreaRepository areaRepository;
@@ -39,61 +43,6 @@ public class HouseForm {
         this.year = year;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getStreetPrefix() {
-        return streetPrefix;
-    }
-
-    public void setStreetPrefix(String streetPrefix) {
-        this.streetPrefix = streetPrefix;
-    }
-
-    public String getStreetName() {
-        return streetName;
-    }
-
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
-    }
-
-    public String getBuilding() {
-        return building;
-    }
-
-    public void setBuilding(String building) {
-        this.building = building;
-    }
-
-    public Long getArea_id() {
-        return area_id;
-    }
-
-    public void setArea_id(Long area_id) {
-        this.area_id = area_id;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public String toString() {
@@ -112,7 +61,7 @@ public class HouseForm {
         House house = new House();
         Area area = areaRepository.findById(area_id).get();
         house.setArea(area);
-        house.setAdress(address);
+        house.setAddress(address);
         house.setBuilding(building);
         house.setStreetName(streetName);
         house.setStreetPrefix(streetPrefix);

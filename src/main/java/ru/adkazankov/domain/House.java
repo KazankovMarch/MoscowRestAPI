@@ -1,7 +1,15 @@
 package ru.adkazankov.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 
+@Data
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name="house")
 public class House {
@@ -40,74 +48,6 @@ public class House {
     }
 
     public House() {
-    }
 
-    public String getAdress() {
-        return address;
-    }
-
-    public void setAdress(String adress) {
-        this.address = adress;
-    }
-
-    public String getStreetPrefix() {
-        return streetPrefix;
-    }
-
-    public void setStreetPrefix(String streetPrefix) {
-        this.streetPrefix = streetPrefix;
-    }
-
-    public String getStreetName() {
-        return streetName;
-    }
-
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
-    }
-
-    public String getBuilding() {
-        return building;
-    }
-
-    public void setBuilding(String building) {
-        this.building = building;
-    }
-
-    public Area getArea() {
-        return area;
-    }
-
-    public void setArea(Area area) {
-        this.area = area;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "House{" +
-                "address='" + address + '\'' +
-                ", streetPrefix='" + streetPrefix + '\'' +
-                ", streetName='" + streetName + '\'' +
-                ", building='" + building + '\'' +
-                ", area=" + area +
-                ", year=" + year +
-                ", id=" + id +
-                '}';
     }
 }
