@@ -1,15 +1,18 @@
 package ru.adkazankov.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @ToString
+
 @Entity
 @Table(name="house")
 public class House {
@@ -26,10 +29,6 @@ public class House {
     @Column(name = "building")
     private String building;
 
-    @ManyToOne
-    @JoinColumn(name = "area_id")
-    private Area area;
-
     @Column(name = "year")
     private int year;
 
@@ -37,6 +36,16 @@ public class House {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @JsonProperty
+    @OneToMany(mappedBy = "house")
+    private List<Comment> comments;
+
+    @ManyToOne
+    @JoinColumn(name = "area_id")
+    private Area area;
+
+
 
     public House(String address, String streetPrefix, String streetName, String building, Area area, int year) {
         this.address = address;

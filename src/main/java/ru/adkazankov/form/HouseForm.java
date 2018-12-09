@@ -1,13 +1,7 @@
 package ru.adkazankov.form;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-import ru.adkazankov.HouseController;
 import ru.adkazankov.dao.AreaRepository;
-import ru.adkazankov.dao.HouseRepository;
 import ru.adkazankov.domain.Area;
 import ru.adkazankov.domain.House;
 

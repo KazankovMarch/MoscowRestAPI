@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @ToString
+
 @Entity
 @Table(name = "water")
 public class WaterTest {

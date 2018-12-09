@@ -12,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = "area")
+
 @Entity
 @Table(name = "noise")
 public class NoiseReport {

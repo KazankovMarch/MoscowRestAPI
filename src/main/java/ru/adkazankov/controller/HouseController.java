@@ -1,4 +1,4 @@
-package ru.adkazankov;
+package ru.adkazankov.controller;
 
 
 import org.hibernate.HibernateException;

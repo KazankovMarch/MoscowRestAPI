@@ -93,3 +93,54 @@ TABLESPACE pg_default;
 
 ALTER TABLE public.noise
     OWNER to postgres;
+
+-- Table: public.area
+
+-- DROP TABLE public.area;
+
+CREATE TABLE public.area
+(
+  name text COLLATE pg_catalog."default",
+  id integer NOT NULL DEFAULT nextval('area_id_seq'::regclass),
+  CONSTRAINT area_pkey PRIMARY KEY (id)
+)
+  WITH (
+    OIDS = FALSE
+  )
+  TABLESPACE pg_default;
+
+ALTER TABLE public.area
+  OWNER to postgres;
+
+-- Table: public.comment
+
+-- DROP TABLE public.comment;
+
+CREATE TABLE public.comment
+(
+  id integer NOT NULL DEFAULT nextval('comment_id_seq'::regclass),
+  client_id bigint,
+  house_id bigint,
+  body text COLLATE pg_catalog."default",
+  grade_id integer,
+  CONSTRAINT comment_pkey PRIMARY KEY (id),
+  CONSTRAINT comment_client_id_fkey FOREIGN KEY (client_id)
+    REFERENCES public.client (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION,
+  CONSTRAINT comment_grade_id_fkey FOREIGN KEY (grade_id)
+    REFERENCES public.grade (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION,
+  CONSTRAINT comment_house_id_fkey FOREIGN KEY (house_id)
+    REFERENCES public.house (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+)
+  WITH (
+    OIDS = FALSE
+  )
+  TABLESPACE pg_default;
+
+ALTER TABLE public.comment
+  OWNER to postgres;
