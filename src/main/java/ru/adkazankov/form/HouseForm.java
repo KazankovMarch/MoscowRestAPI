@@ -23,8 +23,6 @@ public class HouseForm {
 
     private int year;
 
-    private Long id = null;
-
     public HouseForm() {
     }
 
@@ -47,11 +45,10 @@ public class HouseForm {
                 ", building='" + building + '\'' +
                 ", area_id=" + area_id +
                 ", year=" + year +
-                ", id=" + id +
                 '}';
     }
 
-    public House toHouse() {
+    public House toHouse(Long id) {
         House house = new House();
         Area area = areaRepository.findById(area_id).get();
         house.setArea(area);

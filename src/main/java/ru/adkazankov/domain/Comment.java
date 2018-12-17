@@ -23,10 +23,6 @@ public class Comment {
     @Id
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
-
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "house_id")
@@ -35,5 +31,8 @@ public class Comment {
 
     @Column(name = "grade_id")
     private int grade;
+
+    @Column(name = "body")
+    private String body;
 
 }

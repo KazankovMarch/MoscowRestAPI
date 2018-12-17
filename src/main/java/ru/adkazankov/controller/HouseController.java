@@ -26,33 +26,25 @@ public class HouseController {
     public Optional<House> getHouse(@PathVariable(name = "id") Long id){
         return houseRepository.findById(id);
     }
+
     @GetMapping()
     public List<House> getHouse(){
         return houseRepository.findAll();
     }
 
-    @PutMapping
-    public Optional<House> saveHouse(@RequestBody HouseForm houseForm){
+    @PutMapping("/{id}")
+    public Optional<House> putHouse(@RequestBody HouseForm houseForm, @PathVariable(name = "id") Long id){
         houseForm.setAreaRepository(areaRepository);
-        Optional<House> house = Optional.of(houseForm.toHouse());
+        Optional<House> house = Optional.of(houseForm.toHouse(id));
         houseRepository.save(house.get());
         return house;
     }
 
     @PostMapping
-    public Optional<House> updateHouse(@RequestBody HouseForm houseForm){
-        return saveHouse(houseForm);
+    public Optional<House> postHouse(@RequestBody HouseForm houseForm){
+        return putHouse(houseForm, null);
     }
 
-    @DeleteMapping
-    public String deleteHouse(@RequestBody House house){
-        try {
-            houseRepository.delete(house);
-        }catch (HibernateException e){
-            return e.toString();
-        }
-        return "DELETED "+house.toString();
-    }
 
     @DeleteMapping("/{id}")
     public String deleteHouse(@PathVariable Long id){
@@ -63,7 +55,5 @@ public class HouseController {
         }
         return "DELETED "+id;
     }
-
-
 
 }

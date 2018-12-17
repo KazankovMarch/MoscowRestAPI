@@ -37,6 +37,8 @@ public class House {
     @Column(name = "id")
     private Long id;
 
+    //Список всех комментариев к дому,
+    //Spring JPA сам проинициализирует все поля, включая это
     @JsonProperty
     @OneToMany(mappedBy = "house")
     private List<Comment> comments;

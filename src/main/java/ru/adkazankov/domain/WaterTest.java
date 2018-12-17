@@ -29,7 +29,7 @@ public class WaterTest {
     private String resVal;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
