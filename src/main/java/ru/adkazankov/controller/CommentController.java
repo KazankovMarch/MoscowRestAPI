@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/house/{houseid}/comment")
+@RequestMapping("/comment")
 public class CommentController {
 
     @Autowired
@@ -28,13 +28,13 @@ public class CommentController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Comment> getComment(@PathVariable(name = "houseid") Long houseId, @PathVariable(name = "id") Long id){
-        return commentRepository.findByIdAndHouse_id(id, houseId);
+    public Optional<Comment> getComment(@PathVariable(name = "id") Long id){
+        return commentRepository.findById(id);
     }
 
     @PostMapping
-    public Long postComment(@PathVariable(name = "houseid") Long houseId, @RequestBody CommentForm commentForm){
-        Optional<House> house = houseRepository.findById(houseId);
+    public Long postComment(@RequestBody CommentForm commentForm){
+        Optional<House> house = houseRepository.findById(commentForm.getHouseId());
         if(house.isPresent()) {
             Comment comment = commentForm.toComment(null, house.get());
             commentRepository.save(comment);
@@ -46,8 +46,8 @@ public class CommentController {
     }
 
     @PutMapping("{id}")
-    public boolean putComment(@PathVariable(name = "houseid") Long houseId, @PathVariable(name = "id") Long id, @RequestBody CommentForm commentForm){
-        Optional<House> house = houseRepository.findById(houseId);
+    public boolean putComment(@PathVariable(name = "id") Long id, @RequestBody CommentForm commentForm){
+        Optional<House> house = houseRepository.findById(commentForm.getHouseId());
         if(house.isPresent()) {
             Comment comment = commentForm.toComment(id, house.get());
             commentRepository.save(comment);
@@ -59,16 +59,11 @@ public class CommentController {
     }
 
     @DeleteMapping("{id}")
-    public boolean deleteComment(@PathVariable(name = "houseid") Long houseId, @PathVariable(name = "id") Long id) {
-        Optional<House> house = houseRepository.findById(houseId);
-        if(house.isPresent()) {
-            Optional<Comment> comment = commentRepository.findByIdAndHouse(id, house.get());
-            if(comment.isPresent()) {
-                commentRepository.delete(comment.get());
-                return true;
-            }
+    public void deleteComment(@PathVariable(name = "id") Long id) {
+        Optional<Comment> comment = commentRepository.findById(id);
+        if(comment.isPresent()) {
+            commentRepository.delete(comment.get());
         }
-        return false;
     }
 
 }

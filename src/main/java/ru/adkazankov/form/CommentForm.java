@@ -10,6 +10,9 @@ import ru.adkazankov.domain.House;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentForm {
+
+    private Long id;
+    private Long houseId;
     private String body;
     private int grade;
 

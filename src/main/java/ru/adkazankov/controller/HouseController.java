@@ -27,6 +27,14 @@ public class HouseController {
         return houseRepository.findById(id);
     }
 
+
+    @GetMapping("/like")
+    public List<House> getTop10LikeThis(@RequestParam String area, @RequestParam String street, @RequestParam String building){
+        return houseRepository
+                .getTop10ByArea_NameContainsAndStreetNameContainsAndBuildingContains
+                        (area, street, building);
+    }
+
     @GetMapping()
     public List<House> getHouse(){
         return houseRepository.findAll();
